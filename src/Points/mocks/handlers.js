@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { faker } from "@faker-js/faker";
-import { PURCHASE_COLLECTIONS } from "../api/routes";
+import { PURCHASE_COLLECTIONS } from "../api/endpoints/endpoints";
 
 const generateRandomDate = () => {
   return faker.date
