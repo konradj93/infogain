@@ -22,5 +22,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "react/function-component-definition": "off",
     "import/prefer-default-export": "off",
+    "react/destructuring-assignment": "off",
+    "react/prop-types": "off",
   },
 };
