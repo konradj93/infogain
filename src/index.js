@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import App from './App/components/App';
 import reportWebVitals from './reportWebVitals';
+
+import { setupWorker } from 'msw'
+import { fetchTasks_incompleteTask_response } from './Points/mocks/handlers'
+
+if (process.env.NODE_ENV === 'development') {
+    const msw = setupWorker(...[fetchTasks_incompleteTask_response])
+    msw.start()
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
