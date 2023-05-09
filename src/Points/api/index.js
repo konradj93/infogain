@@ -1,1 +1,1 @@
-export const PURCHASE_COLLECTIONS = "/api/purchase"
+export const PURCHASE_COLLECTIONS = "/api/purchase";
