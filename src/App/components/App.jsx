@@ -1,8 +1,14 @@
+import { Routes, Route } from "react-router-dom";
+import PointsListView from "../../PurchasePoints/views/PointsListView/PointsListView";
+import ErrorBoundary from "../../Common/components/Errorboundary/Errorboundary";
+
 const App = () => {
   return (
-    <div>
-      <h1>Hello InfoGain</h1>
-    </div>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<PointsListView />} />
+      </Routes>
+    </ErrorBoundary>
   );
 };
 

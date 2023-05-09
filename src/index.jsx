@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { setupWorker } from "msw";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App/components/App";
 import reportWebVitals from "./reportWebVitals";
-import { fetchTasksIncompleteTaskResponse } from "./Points/mocks/handlers";
+import { fetchTasksIncompleteTaskResponse } from "./PurchasePoints/mocks/handlers";
 
 if (process.env.NODE_ENV === "development") {
   const msw = setupWorker(...[fetchTasksIncompleteTaskResponse]);
@@ -12,9 +13,9 @@ if (process.env.NODE_ENV === "development") {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
