@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { faker } from "@faker-js/faker";
-import { PURCHASE_COLLECTIONS } from "../api/index";
+import { PURCHASE_COLLECTIONS } from "../api/routes";
 
 const generateRandomDate = () => {
   return faker.date
@@ -16,7 +16,7 @@ export const fetchTasksIncompleteTaskResponse = rest.get(
   PURCHASE_COLLECTIONS,
   async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(generateRandomDate()));
-  },
+  }
 );
 
 export const handlers = [fetchTasksIncompleteTaskResponse];
