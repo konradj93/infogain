@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 
-const  App = () => {
+const App = () => {
   useEffect(() => {
     async function logJSONData() {
       const response = await fetch("/api/purchase");
       const jsonData = await response.json();
       console.log(jsonData);
     }
-    logJSONData()
-  }, [])
+    logJSONData();
+  }, []);
   return (
-    <div> 
+    <div>
       <h1>Hello InfoGain</h1>
     </div>
   );
-}
+};
 
 export default App;
