@@ -117,11 +117,7 @@ self.addEventListener("fetch", function (event) {
   event.respondWith(
     handleRequest(event, requestId).catch((error) => {
       if (error.name === "NetworkError") {
-        console.warn(
-          '[MSW] Successfully emulated a network error for the "%s %s" request.',
-          request.method,
-          request.url
-        );
+        console.warn('[MSW] Successfully emulated a network error for the "%s %s" request.', request.method, request.url);
         return;
       }
 
@@ -131,9 +127,9 @@ self.addEventListener("fetch", function (event) {
 [MSW] Caught an exception from the "%s %s" request (%s). This is probably not a problem with Mock Service Worker. There is likely an additional logging output above.`,
         request.method,
         request.url,
-        `${error.name}: ${error.message}`
+        `${error.name}: ${error.message}`,
       );
-    })
+    }),
   );
 });
 

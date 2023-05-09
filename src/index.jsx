@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { setupWorker } from "msw";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App/components/App";
+import App from "./App/components/app/App";
 import reportWebVitals from "./reportWebVitals";
 import { fetchTasksIncompleteTaskResponse } from "./PurchasePoints/mocks/handlers";
 
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function

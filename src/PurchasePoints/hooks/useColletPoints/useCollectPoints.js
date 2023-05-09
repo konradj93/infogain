@@ -2,18 +2,23 @@ import { useEffect, useState } from "react";
 import { fetChPointsCollection } from "../../api/services/services";
 import groupElementsByDate from "../../logic/groupElementsByDate/groupElementsByDate";
 
+export const STATUSES = {
+  isLoading: "IS_LOADING",
+  completed: "COMPLETED",
+  error: "ERROR",
+};
 const useCollectPoints = () => {
-  const [isLoading, setIsLoading] = useState(null);
-  const [purchases, setPurchase] = useState(null);
+  const [data, setData] = useState(null);
   const fetchPurchases = async () => {
-    setIsLoading(true);
+    setData({ status: STATUSES.isLoading });
     try {
       const response = await fetChPointsCollection();
-      setPurchase(groupElementsByDate(response));
+      setData({
+        status: STATUSES.completed,
+        data: groupElementsByDate(response),
+      });
     } catch (err) {
-      throw new Error("something went wrong");
-    } finally {
-      setIsLoading(false);
+      setData({ status: STATUSES.error, data: err });
     }
   };
   useEffect(() => {
@@ -21,8 +26,7 @@ const useCollectPoints = () => {
   }, []);
 
   return {
-    purchases,
-    isLoading,
+    data,
   };
 };
 
