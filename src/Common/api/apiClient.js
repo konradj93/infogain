@@ -13,9 +13,6 @@ const apiClient = async (endpoint, { body, ...customConfig } = {}) => {
   }
 
   const response = await fetch(`${endpoint}`, config);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
   return response.json();
 };
 
