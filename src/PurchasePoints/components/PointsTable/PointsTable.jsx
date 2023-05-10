@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import calculateRewardPoints from "../../logic/calculateRewardPoints/calculateRewardPoints";
 import { calculateRewardForGivenTransactions } from "../../logic/calculateRewardForGivenCollection/calculateRewardForGivenCollection";
 
+const TABLE_CELL_ALIGNMENT = "left";
+
 const TablePointsContainer = styled(TableContainer)(({ theme }) => ({
   height: "400px",
   overflowY: "scroll",
@@ -16,6 +18,9 @@ const TablePointsContainer = styled(TableContainer)(({ theme }) => ({
 }));
 
 const PointsTable = ({ points }) => {
+  if (typeof points !== "object" || Object.keys(points).length === 0) {
+    return <p>There is no transactions in provided month</p>;
+  }
   return (
     <>
       <h2>
@@ -26,10 +31,10 @@ const PointsTable = ({ points }) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Id</TableCell>
-              <TableCell align="left">Day</TableCell>
-              <TableCell align="left">Money amount</TableCell>
-              <TableCell align="left">Points</TableCell>
+              <TableCell align={TABLE_CELL_ALIGNMENT}>Id</TableCell>
+              <TableCell align={TABLE_CELL_ALIGNMENT}>Day</TableCell>
+              <TableCell align={TABLE_CELL_ALIGNMENT}>Money amount</TableCell>
+              <TableCell align={TABLE_CELL_ALIGNMENT}>Points</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -40,10 +45,14 @@ const PointsTable = ({ points }) => {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="left">{row.id}</TableCell>
-                  <TableCell align="left">{row.day + 1}</TableCell>
-                  <TableCell align="left">{row.amount}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align={TABLE_CELL_ALIGNMENT}>{row.id}</TableCell>
+                  <TableCell align={TABLE_CELL_ALIGNMENT}>
+                    {row.day + 1}
+                  </TableCell>
+                  <TableCell align={TABLE_CELL_ALIGNMENT}>
+                    {row.amount}
+                  </TableCell>
+                  <TableCell align={TABLE_CELL_ALIGNMENT}>
                     {calculateRewardPoints(row.amount)}
                   </TableCell>
                 </TableRow>

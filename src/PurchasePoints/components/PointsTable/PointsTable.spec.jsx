@@ -26,6 +26,13 @@ describe("PointsTable", () => {
     ).toBeInTheDocument();
   });
 
+  it("should display communcat if there is no data to make some calculations", () => {
+    const { getByText } = render(<PointsTable points={{}} />);
+    expect(
+      getByText(/There is no transactions in provided month/i),
+    ).toBeInTheDocument();
+  });
+
   it("should display table headers", () => {
     const { getByText } = render(<PointsTable points={data[0]} />);
     expect(getByText("Id")).toBeInTheDocument();

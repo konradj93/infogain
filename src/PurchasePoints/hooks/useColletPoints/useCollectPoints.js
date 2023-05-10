@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetChPointsCollection } from "../../api/services/services";
+import { fetchPointsCollection } from "../../api/services/services";
 import groupElementsByDate from "../../logic/groupElementsByDate/groupElementsByDate";
 
 export const STATUSES = {
@@ -12,7 +12,7 @@ const useCollectPoints = () => {
   const fetchPurchases = async () => {
     setData({ status: STATUSES.isLoading });
     try {
-      const response = await fetChPointsCollection();
+      const response = await fetchPointsCollection();
       setData({
         status: STATUSES.completed,
         data: groupElementsByDate(response),

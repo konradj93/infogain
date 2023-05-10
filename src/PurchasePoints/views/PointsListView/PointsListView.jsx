@@ -29,7 +29,7 @@ const renderElements = (data) => {
           <TotalPoints
             totalPoints={calculateRewardForGivenCollection(data.data)}
           />
-          <PointsTable points={data.data[0]} />
+          <PointsTable points={data.data[0] || {}} />
         </>
       );
     default:

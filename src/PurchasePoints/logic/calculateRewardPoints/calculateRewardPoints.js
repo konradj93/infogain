@@ -1,12 +1,20 @@
+const FIRST_REWARD_TRESHOLD = 50;
+const SECOND_REWARD_TRESHOLD = 100;
+
 const calculateRewardPoints = (transactionAmount) => {
   let rewardPoints = 0;
 
-  if (transactionAmount > 100) {
-    rewardPoints += (100 - 50) * 1 + (transactionAmount - 100) * 2;
+  if (transactionAmount > SECOND_REWARD_TRESHOLD) {
+    rewardPoints +=
+      (SECOND_REWARD_TRESHOLD - FIRST_REWARD_TRESHOLD) * 1 +
+      (transactionAmount - SECOND_REWARD_TRESHOLD) * 2;
   }
 
-  if (transactionAmount >= 50 && transactionAmount <= 100) {
-    rewardPoints += (transactionAmount - 50) * 1;
+  if (
+    transactionAmount >= FIRST_REWARD_TRESHOLD &&
+    transactionAmount <= SECOND_REWARD_TRESHOLD
+  ) {
+    rewardPoints += (transactionAmount - FIRST_REWARD_TRESHOLD) * 1;
   }
 
   return rewardPoints;
