@@ -1,3 +1,15 @@
+## Requirements
+
+Expected node version "^14.18.0 || ^16.14.0 || >=18.0.0"
+
+yarn
+
+## Starting guid
+
+1. Clone repo
+2. in project directory run command yarn
+3. to start project run command yarn start
+
 ## Available Scripts
 
 In the project directory, you can run:
