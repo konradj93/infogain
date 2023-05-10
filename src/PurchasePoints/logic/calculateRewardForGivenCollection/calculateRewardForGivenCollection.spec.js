@@ -17,6 +17,18 @@ describe("calculateRewardForGivenCollection", () => {
     expect(calculateRewardForGivenCollection(collection)).toBe(150);
   });
 
+  test("should return the correct reward points for now transactions", () => {
+    const collection = [
+      {
+        key: "2022-0",
+        year: 2022,
+        month: 0,
+        transactions: [],
+      },
+    ];
+    expect(calculateRewardForGivenCollection(collection)).toBe(0);
+  });
+
   test("should return the correct reward points for multiple transactions in one month", () => {
     const collection = [
       {

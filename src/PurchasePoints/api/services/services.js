@@ -1,7 +1,7 @@
 import apiClient from "../../../Common/api/apiClient";
-import { mappPurchaseDateStringToDate } from "../mappers/mappers";
+import { mapPurchaseDateStringToDate } from "../mappers/mappers";
 
-export const fetChPointsCollection = async () => {
+export const fetchPointsCollection = async () => {
   const response = await apiClient("/api/purchase");
-  return mappPurchaseDateStringToDate(response);
+  return mapPurchaseDateStringToDate(response);
 };

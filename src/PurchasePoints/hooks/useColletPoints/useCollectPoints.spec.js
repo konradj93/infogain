@@ -1,6 +1,6 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import useCollectPoints, { STATUSES } from "./useCollectPoints";
-import { fetChPointsCollection } from "../../api/services/services";
+import { fetchPointsCollection } from "../../api/services/services";
 import groupElementsByDate from "../../logic/groupElementsByDate/groupElementsByDate";
 
 jest.mock("../../api/services/services");
@@ -25,7 +25,7 @@ describe("useCollectPoints", () => {
     ];
     let render;
 
-    fetChPointsCollection.mockResolvedValue(mockData);
+    fetchPointsCollection.mockResolvedValue(mockData);
     groupElementsByDate.mockReturnValue({ "2022-01-01": mockData });
     await act(() => {
       render = renderHook(() => useCollectPoints());
@@ -42,7 +42,7 @@ describe("useCollectPoints", () => {
     let render;
 
     const mockError = new Error("Something went wrong");
-    fetChPointsCollection.mockRejectedValue(mockError);
+    fetchPointsCollection.mockRejectedValue(mockError);
     await act(() => {
       render = renderHook(() => useCollectPoints());
     });

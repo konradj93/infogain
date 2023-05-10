@@ -1,9 +1,13 @@
+const getDatesComponents = (date) => ({
+  month: date.getMonth(),
+  fullMonthName: date.toLocaleString("en", { month: "long" }),
+  year: date.getFullYear(),
+  day: date.getDay(),
+});
+
 const groupElementsByDate = (arr) =>
   arr.reduce((acc, curr) => {
-    const month = curr.date.getMonth();
-    const fullMonthName = curr.date.toLocaleString("en", { month: "long" });
-    const year = curr.date.getFullYear();
-    const day = curr.date.getDay();
+    const { month, fullMonthName, year, day } = getDatesComponents(curr.date);
     const key = `${year}-${month}`;
     const obj = acc.find((el) => el.key === key);
     if (obj) {
