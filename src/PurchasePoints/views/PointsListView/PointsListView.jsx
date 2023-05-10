@@ -1,45 +1,47 @@
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
 import Progress from "../../../Common/components/ProgressBar/Progress";
-import useCollectPoints, { STATUSES } from "../../hooks/useColletPoints/useCollectPoints";
+import useCollectPoints, {
+  STATUSES,
+} from "../../hooks/useColletPoints/useCollectPoints";
 import TotalPoints from "../../components/TotalPoints/TotalPoints";
-import calculateRewardForGivenCollection from "../../logic/calculateRewardForGivenCollection/calculateRewardForGivenCollection";
+import PointsTable from "../../components/PointsTable/PointsTable";
+import { calculateRewardForGivenCollection } from "../../logic/calculateRewardForGivenCollection/calculateRewardForGivenCollection";
+import BaseLayout from "../../../Common/layouts/BaseLayout/BaseLayout";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
+const PointsListSection = styled("div")(({ theme }) => ({
+  maxWidth: "1080px",
+  width: "100%",
+  borderRadius: "10px",
+  backgroundColor: "#f9f6ff",
+  padding: theme.spacing(2),
 }));
 
+const renderElements = (data) => {
+  if (!data) return <Progress />;
+  switch (data.status) {
+    case STATUSES.isLoading:
+      return <Progress />;
+    case STATUSES.error:
+      return <h1>Something went wrong</h1>;
+    case STATUSES.completed:
+      return (
+        <>
+          <TotalPoints
+            totalPoints={calculateRewardForGivenCollection(data.data)}
+          />
+          <PointsTable points={data.data[0]} />
+        </>
+      );
+    default:
+      return <h1>Please refresh page</h1>;
+  }
+};
 const PointsListView = () => {
   const { data } = useCollectPoints();
-  if (!data || data.status === STATUSES.isLoading) {
-    return <Progress />;
-  }
-  if (data.status === STATUSES.error) {
-    return <Progress />;
-  }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid xs={6} md={8}>
-          <TotalPoints totalPoints={calculateRewardForGivenCollection(data.data)} />
-        </Grid>
-        <Grid xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
-        </Grid>
-        <Grid xs={6} md={8}>
-          <Item>xs=6 md=8</Item>
-        </Grid>
-      </Grid>
-    </Box>
+    <BaseLayout>
+      <PointsListSection>{renderElements(data)}</PointsListSection>
+    </BaseLayout>
   );
 };
 

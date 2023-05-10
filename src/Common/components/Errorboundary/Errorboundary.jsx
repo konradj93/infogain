@@ -1,4 +1,5 @@
 import React from "react";
+import BaseLayout from "../../layouts/BaseLayout/BaseLayout";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -20,14 +21,23 @@ class ErrorBoundary extends React.Component {
       // github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/destructuring-assignment.md
       // Error path
       return (
-        <div>
-          <h2>Something went wrong.</h2>
-          <details style={{ whiteSpace: "pre-wrap" }}>
-            {this.state.error && this.state.error.toString()}
+        <BaseLayout>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flexWrap: "wrap",
+            }}
+          >
+            <h2>Something went wrong. Please refresh page</h2>
             <br />
-            {this.state.errorInfo.componentStack}
-          </details>
-        </div>
+            <details style={{ whiteSpace: "pre-wrap", width: 100 }}>
+              {this.state.error && this.state.error.toString()}
+              <br />
+              {this.state.errorInfo.componentStack}
+            </details>
+          </div>
+        </BaseLayout>
       );
     }
     // Normally, just render children

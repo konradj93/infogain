@@ -1,13 +1,14 @@
 /* eslint-disable no-param-reassign */
 import calculateRewardPoints from "../calculateRewardPoints/calculateRewardPoints";
 
-const calculateRewardForGivenCollection = (collection) =>
-  collection.reduce((acc, el) => {
-    acc += el.transactions.reduce((points, purchase) => {
-      points += calculateRewardPoints(purchase.amount);
-      return points;
-    }, 0);
-    return acc;
+export const calculateRewardForGivenTransactions = (collection) =>
+  collection.transactions.reduce((points, purchase) => {
+    points += calculateRewardPoints(purchase.amount);
+    return points;
   }, 0);
 
-export default calculateRewardForGivenCollection;
+export const calculateRewardForGivenCollection = (collection) =>
+  collection.reduce((acc, el) => {
+    acc += calculateRewardForGivenTransactions(el);
+    return acc;
+  }, 0);

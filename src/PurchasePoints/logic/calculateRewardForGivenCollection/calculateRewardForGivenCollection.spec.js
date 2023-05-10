@@ -1,4 +1,4 @@
-import calculateRewardForGivenCollection from "./calculateRewardForGivenCollection";
+import { calculateRewardForGivenCollection } from "./calculateRewardForGivenCollection";
 
 describe("calculateRewardForGivenCollection", () => {
   test("should return 0 for an empty array", () => {
