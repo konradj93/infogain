@@ -5,7 +5,13 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: ["airbnb", "eslint:recommended", "prettier", "plugin:react/recommended", "plugin:prettier/recommended"],
+  extends: [
+    "airbnb",
+    "eslint:recommended",
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+  ],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
@@ -25,8 +31,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "react/destructuring-assignment": "off",
     "react/prop-types": "off",
-    "react/jsx-indent": ["warn", 2],
-    "prettier/prettier": ["off", {}, { usePrettierrc: true, endOfLine: "auto" }],
   },
   settings: {
     react: {
